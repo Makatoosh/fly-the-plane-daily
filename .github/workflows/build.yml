@@ -2,9 +2,11 @@ name: Build daily page
 
 on:
   schedule:
-    # 06:15 UTC daily. Cron here is always UTC, so this shifts by an hour
-    # relative to UK clocks when BST is in effect.
-    - cron: "15 6 * * *"
+    # Two UTC crons to cover both BST (UTC+1) and GMT (UTC+0). The gate
+    # step below checks the real UK wall clock and skips whichever of
+    # the two doesn't actually land at 08:00 Europe/London that day.
+    - cron: "0 7 * * *"
+    - cron: "0 8 * * *"
   workflow_dispatch:
 
 permissions:
@@ -14,16 +16,35 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Check if it's 8am UK time
+        id: gate
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            uk_hour=$(TZ='Europe/London' date +%H)
+            if [ "$uk_hour" = "08" ]; then
+              echo "run=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "run=false" >> "$GITHUB_OUTPUT"
+              echo "Not 8am UK time (it's $uk_hour:00 there) - skipping."
+            fi
+          fi
+
       - uses: actions/checkout@v4
+        if: steps.gate.outputs.run == 'true'
 
       - uses: actions/setup-python@v5
+        if: steps.gate.outputs.run == 'true'
         with:
           python-version: "3.12"
           cache: pip
 
       - run: pip install -r requirements.txt
+        if: steps.gate.outputs.run == 'true'
 
       - name: Build page
+        if: steps.gate.outputs.run == 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GMAIL_ADDRESS: ${{ vars.GMAIL_ADDRESS }}
@@ -32,6 +53,7 @@ jobs:
         run: python build.py
 
       - name: Commit if changed
+        if: steps.gate.outputs.run == 'true'
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
