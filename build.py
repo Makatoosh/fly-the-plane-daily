@@ -10,7 +10,10 @@ import difflib
 import html
 import os
 import re
+import smtplib
 import sys
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 import anthropic
 import feedparser
@@ -20,9 +23,14 @@ from jinja2 import Environment, FileSystemLoader
 
 SOURCES_FILE = "sources.yaml"
 TEMPLATE_DIR = "templates"
-TEMPLATE_NAME = "index.html.j2"
+PAGE_TEMPLATE = "index.html.j2"
+EMAIL_TEMPLATE = "email.html.j2"
 OUTPUT_FILE = "index.html"
 LOG_FILE = "feed_health.log"
+PAGE_URL = "https://makatoosh.github.io/fly-the-plane-daily/"
+
+SMTP_HOST = "smtp.gmail.com"
+SMTP_PORT = 465
 
 USER_AGENT = "Mozilla/5.0 (compatible; aviation-digest-bot/1.0)"
 FETCH_TIMEOUT = 15
@@ -135,16 +143,43 @@ def summarize(client, entry):
         return entry["excerpt"][:200] or entry["title"]
 
 
-def render(items, source_count):
+def render(template_name, items, source_count, **extra):
     env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
-    template = env.get_template(TEMPLATE_NAME)
+    template = env.get_template(template_name)
     now = datetime.datetime.now(datetime.timezone.utc)
     return template.render(
         items=items,
         item_count=len(items),
         source_count=source_count,
         generated_at=now.strftime("%Y-%m-%d %H:%M UTC"),
+        **extra,
     )
+
+
+def send_email(html_body, item_count):
+    sender = os.environ.get("GMAIL_ADDRESS")
+    password = os.environ.get("GMAIL_APP_PASSWORD")
+    recipient = os.environ.get("DIGEST_RECIPIENT")
+
+    if not (sender and password and recipient):
+        log("EMAIL SKIPPED  GMAIL_ADDRESS/GMAIL_APP_PASSWORD/DIGEST_RECIPIENT not fully set")
+        return
+
+    today = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
+    message = MIMEMultipart("alternative")
+    message["Subject"] = f"Fly The Plane Daily - {today} ({item_count} stories)"
+    message["From"] = sender
+    message["To"] = recipient
+    message.attach(MIMEText(f"{item_count} aviation stories today. View as HTML for the full digest.", "plain"))
+    message.attach(MIMEText(html_body, "html"))
+
+    try:
+        with smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT) as server:
+            server.login(sender, password)
+            server.sendmail(sender, [recipient], message.as_string())
+        log(f"EMAIL SENT  to {recipient}")
+    except smtplib.SMTPException as e:
+        log(f"EMAIL FAILED  {e}")
 
 
 def main():
@@ -179,10 +214,13 @@ def main():
             }
         )
 
-    html_out = render(items, len(sources))
+    page_html = render(PAGE_TEMPLATE, items, len(sources))
     with open(OUTPUT_FILE, "w") as f:
-        f.write(html_out)
+        f.write(page_html)
     log(f"Wrote {OUTPUT_FILE} with {len(items)} items")
+
+    email_html = render(EMAIL_TEMPLATE, items, len(sources), page_url=PAGE_URL)
+    send_email(email_html, len(items))
 
 
 if __name__ == "__main__":

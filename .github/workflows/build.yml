@@ -26,6 +26,9 @@ jobs:
       - name: Build page
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GMAIL_ADDRESS: ${{ vars.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          DIGEST_RECIPIENT: ${{ vars.DIGEST_RECIPIENT }}
         run: python build.py
 
       - name: Commit if changed
