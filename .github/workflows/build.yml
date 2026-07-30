@@ -1,0 +1,37 @@
+name: Build daily page
+
+on:
+  schedule:
+    # 06:15 UTC daily. Cron here is always UTC, so this shifts by an hour
+    # relative to UK clocks when BST is in effect.
+    - cron: "15 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Build page
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python build.py
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add index.html feed_health.log
+          git diff --staged --quiet || git commit -m "Digest for $(date -u +%F)"
+          git push

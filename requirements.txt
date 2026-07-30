@@ -1,0 +1,6 @@
+feedparser
+pyyaml
+jinja2
+anthropic
+requests
+python-dateutil

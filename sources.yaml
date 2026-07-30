@@ -1,0 +1,31 @@
+# Aviation news RSS feeds.
+# One entry per source. Add or remove sites here — no code changes needed.
+# Run `python test_feeds.py` after editing to check a feed is alive before
+# leaving it in, and remove any that come back dead.
+
+- name: Simple Flying
+  url: https://simpleflying.com/feed/
+- name: The Aviationist
+  url: https://theaviationist.com/feed/
+- name: AeroTime
+  url: https://www.aerotime.aero/feed
+- name: Leeham News and Analysis
+  url: https://leehamnews.com/feed/
+- name: AirlineReporter
+  url: https://www.airlinereporter.com/feed/
+- name: Aero-News Network
+  url: https://www.aero-news.net/news/rssfeed.xml
+- name: AVweb
+  url: https://www.avweb.com/feed/
+- name: Air Cargo News
+  url: https://www.aircargonews.net/feed/
+- name: Aerospace Technology
+  url: https://www.aerospace-technology.com/feed/
+- name: Australian Aviation
+  url: https://australianaviation.com.au/feed/
+- name: AeroXplorer
+  url: https://aeroxplorer.com/rss.xml
+- name: World Airline News
+  url: https://worldairlinenews.com/feed/
+- name: Aviation Source News
+  url: https://aviationsourcenews.com/feed/

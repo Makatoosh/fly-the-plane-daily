@@ -1,0 +1,5 @@
+[2026-07-30T16:21:53+00:00] PARSE FAILED  General Aviation News: <unknown>:2:0: syntax error
+[2026-07-30T16:24:53+00:00] Loaded 13 sources
+[2026-07-30T16:25:05+00:00] 55 entries in the last 24h (of 240 fetched)
+[2026-07-30T16:25:05+00:00] 55 entries after dedup
+[2026-07-30T16:26:11+00:00] Wrote index.html with 55 items
