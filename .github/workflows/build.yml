@@ -16,18 +16,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check if it's 8am UK time
+      - name: Check if this schedule matches today's UK time offset
         id: gate
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
-            uk_hour=$(TZ='Europe/London' date +%H)
-            if [ "$uk_hour" = "08" ]; then
+            # Use which cron fired (unaffected by GitHub's scheduling delay)
+            # plus today's actual UK UTC offset, rather than the live clock -
+            # a delayed run would otherwise see the wrong hour and skip.
+            schedule="${{ github.event.schedule }}"
+            uk_offset=$(TZ='Europe/London' date +%z)
+            if { [ "$schedule" = "0 7 * * *" ] && [ "$uk_offset" = "+0100" ]; } || \
+               { [ "$schedule" = "0 8 * * *" ] && [ "$uk_offset" = "+0000" ]; }; then
               echo "run=true" >> "$GITHUB_OUTPUT"
             else
               echo "run=false" >> "$GITHUB_OUTPUT"
-              echo "Not 8am UK time (it's $uk_hour:00 there) - skipping."
+              echo "Schedule '$schedule' doesn't match today's UK offset ($uk_offset) - skipping."
             fi
           fi
 
