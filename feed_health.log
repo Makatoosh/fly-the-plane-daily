@@ -122,3 +122,11 @@
 [2026-08-10T08:27:59+00:00] 22 entries after dedup
 [2026-08-10T08:28:22+00:00] Wrote index.html with 22 items
 [2026-08-10T08:28:25+00:00] EMAIL SENT  to hello@flytheplane.co.uk
+[2026-08-11T08:09:56+00:00] Loaded 19 sources
+[2026-08-11T08:10:00+00:00] FETCH FAILED  Aero-News Network: 403 Client Error: Forbidden for url: https://www.aero-news.net/news/rssfeed.xml
+[2026-08-11T08:10:00+00:00] FETCH FAILED  Air Cargo News: 403 Client Error: Forbidden for url: https://www.aircargonews.net/feed/
+[2026-08-11T08:10:07+00:00] FETCH FAILED  Asian Aviation: 403 Client Error: Forbidden for url: https://asianaviation.com/feed/
+[2026-08-11T08:10:14+00:00] 65 entries in the last 24h (of 285 fetched)
+[2026-08-11T08:10:15+00:00] 63 entries after dedup
+[2026-08-11T08:11:29+00:00] Wrote index.html with 63 items
+[2026-08-11T08:11:30+00:00] EMAIL SENT  to hello@flytheplane.co.uk
