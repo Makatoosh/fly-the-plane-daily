@@ -259,3 +259,14 @@
 [2026-08-25T07:44:51+00:00] 47 entries after dedup
 [2026-08-25T07:45:35+00:00] Wrote index.html with 47 items
 [2026-08-25T07:45:37+00:00] EMAIL SENT  to hello@flytheplane.co.uk
+[2026-08-26T07:48:18+00:00] Loaded 19 sources
+[2026-08-26T07:48:22+00:00] FETCH FAILED  Aero-News Network: 403 Client Error: Forbidden for url: https://www.aero-news.net/news/rssfeed.xml
+[2026-08-26T07:48:23+00:00] FETCH FAILED  Air Cargo News: 403 Client Error: Forbidden for url: https://www.aircargonews.net/feed/
+[2026-08-26T07:48:24+00:00] PARSE FAILED  Aviation Source News: <unknown>:2:0: syntax error
+[2026-08-26T07:48:24+00:00] FETCH FAILED  Asian Aviation: 403 Client Error: Forbidden for url: https://asianaviation.com/feed/
+[2026-08-26T07:48:25+00:00] FETCH FAILED  Russian Aviation Insider: 401 Client Error: Unauthorized for url: https://rusaviainsider.com/feed/
+[2026-08-26T07:48:27+00:00] FETCH FAILED  African Aviation: HTTPSConnectionPool(host='www.africanaviation.org', port=443): Max retries exceeded with url: /feed/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1010)')))
+[2026-08-26T07:48:27+00:00] 48 entries in the last 24h (of 255 fetched)
+[2026-08-26T07:48:27+00:00] 47 entries after dedup
+[2026-08-26T07:49:10+00:00] Wrote index.html with 47 items
+[2026-08-26T07:49:13+00:00] EMAIL SENT  to hello@flytheplane.co.uk
