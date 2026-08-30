@@ -304,3 +304,14 @@
 [2026-08-29T13:00:05+00:00] 25 entries after dedup
 [2026-08-29T13:00:37+00:00] Wrote index.html with 25 items
 [2026-08-29T13:00:39+00:00] EMAIL SENT  to hello@flytheplane.co.uk
+[2026-08-30T12:39:07+00:00] Loaded 19 sources
+[2026-08-30T12:39:10+00:00] FETCH FAILED  Aero-News Network: 403 Client Error: Forbidden for url: https://www.aero-news.net/news/rssfeed.xml
+[2026-08-30T12:39:11+00:00] FETCH FAILED  Air Cargo News: 403 Client Error: Forbidden for url: https://www.aircargonews.net/feed/
+[2026-08-30T12:39:12+00:00] FETCH FAILED  Aviation Source News: HTTPSConnectionPool(host='aviationsourcenews.com', port=443): Max retries exceeded with url: /feed/ (Caused by NameResolutionError("HTTPSConnection(host='aviationsourcenews.com', port=443): Failed to resolve 'aviationsourcenews.com' ([Errno -2] Name or service not known)"))
+[2026-08-30T12:39:12+00:00] FETCH FAILED  Asian Aviation: 403 Client Error: Forbidden for url: https://asianaviation.com/feed/
+[2026-08-30T12:39:13+00:00] FETCH FAILED  Russian Aviation Insider: 401 Client Error: Unauthorized for url: https://rusaviainsider.com/feed/
+[2026-08-30T12:39:15+00:00] FETCH FAILED  African Aviation: HTTPSConnectionPool(host='www.africanaviation.org', port=443): Max retries exceeded with url: /feed/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1010)')))
+[2026-08-30T12:39:16+00:00] 12 entries in the last 24h (of 255 fetched)
+[2026-08-30T12:39:16+00:00] 11 entries after dedup
+[2026-08-30T12:39:25+00:00] Wrote index.html with 11 items
+[2026-08-30T12:39:27+00:00] EMAIL SENT  to hello@flytheplane.co.uk
