@@ -697,3 +697,14 @@
 [2026-10-04T13:04:28+00:00] 18 entries after dedup
 [2026-10-04T13:04:42+00:00] Wrote index.html with 18 items
 [2026-10-04T13:04:47+00:00] EMAIL SENT  to hello@flytheplane.co.uk
+[2026-10-05T15:37:39+00:00] Loaded 19 sources
+[2026-10-05T15:37:42+00:00] FETCH FAILED  Aero-News Network: 403 Client Error: Forbidden for url: https://www.aero-news.net/news/rssfeed.xml
+[2026-10-05T15:37:43+00:00] FETCH FAILED  Air Cargo News: 403 Client Error: Forbidden for url: https://www.aircargonews.net/feed/
+[2026-10-05T15:37:59+00:00] FETCH FAILED  AeroXplorer: HTTPSConnectionPool(host='aeroxplorer.com', port=443): Read timed out. (read timeout=15)
+[2026-10-05T15:38:00+00:00] PARSE FAILED  Aviation Source News: <unknown>:3:39: not well-formed (invalid token)
+[2026-10-05T15:38:00+00:00] FETCH FAILED  Asian Aviation: 403 Client Error: Forbidden for url: https://asianaviation.com/feed/
+[2026-10-05T15:38:04+00:00] FETCH FAILED  African Aviation: HTTPSConnectionPool(host='www.africanaviation.org', port=443): Max retries exceeded with url: /feed/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1010)')))
+[2026-10-05T15:38:05+00:00] 30 entries in the last 24h (of 235 fetched)
+[2026-10-05T15:38:05+00:00] 30 entries after dedup
+[2026-10-05T15:38:32+00:00] Wrote index.html with 30 items
+[2026-10-05T15:38:35+00:00] EMAIL SENT  to hello@flytheplane.co.uk
