@@ -911,3 +911,12 @@
 [2026-10-26T14:39:53+00:00] 36 entries after dedup
 [2026-10-26T14:40:20+00:00] Wrote index.html with 36 items
 [2026-10-26T14:40:21+00:00] EMAIL SENT  to hello@flytheplane.co.uk
+[2026-10-27T13:45:08+00:00] Loaded 19 sources
+[2026-10-27T13:45:13+00:00] FETCH FAILED  Air Cargo News: 403 Client Error: Forbidden for url: https://www.aircargonews.net/feed/
+[2026-10-27T13:45:15+00:00] FETCH FAILED  Aviation Source News: HTTPSConnectionPool(host='aviationsourcenews.com', port=443): Max retries exceeded with url: /feed/ (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')))
+[2026-10-27T13:45:19+00:00] FETCH FAILED  Russian Aviation Insider: 401 Client Error: Unauthorized for url: https://rusaviainsider.com/feed/
+[2026-10-27T13:45:22+00:00] FETCH FAILED  African Aviation: HTTPSConnectionPool(host='www.africanaviation.org', port=443): Max retries exceeded with url: /feed/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1010)')))
+[2026-10-27T13:45:23+00:00] 63 entries in the last 24h (of 235 fetched)
+[2026-10-27T13:45:23+00:00] 62 entries after dedup
+[2026-10-27T13:46:07+00:00] Wrote index.html with 62 items
+[2026-10-27T13:46:08+00:00] EMAIL SENT  to hello@flytheplane.co.uk
